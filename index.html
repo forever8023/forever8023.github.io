@@ -219,7 +219,8 @@
             </div>
         </div>
         <div style="position:absolute; bottom:120px left:auto; width:85%">
-        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=477754663&auto=1&height=66"></iframe>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=86381&auto=1&height=66"></iframe>
+        </div>
     </header>                
 </div>
     </div>
@@ -273,12 +274,13 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-给博客添加音乐" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-LSB隐写" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/07/10/给博客添加音乐/" class="article-date">
-      <time datetime="2019-07-10T10:13:33.108Z" itemprop="datePublished">2019-07-10</time>
+      <a href="/2019/07/14/LSB隐写/" class="article-date">
+      <time datetime="2019-07-14T03:15:19.703Z" itemprop="datePublished">2019-07-14</time>
 </a>
+
 
     </div>
   
@@ -286,6 +288,80 @@
     
       <input type="hidden" class="isFancy">
     
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/14/LSB隐写/">CSS学习过程</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="图片隐写—LSB隐写"><a href="#图片隐写—LSB隐写" class="headerlink" title="图片隐写—LSB隐写"></a>图片隐写—LSB隐写</h1><h2 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h2><p>小赤也是初学图片隐写，而且呢也是只了解了LSB隐写，对于LSB隐写应该是最常见的也是最实用的吧，今天就给大家分享一下我的了解。</p>
+<h3 id="LSB隐写简介"><a href="#LSB隐写简介" class="headerlink" title="LSB隐写简介"></a>LSB隐写简介</h3><p>LSB全称leastsignificant bit，是一种基于图片最低有效位修改储存信息的隐写方法，为什么会有这种隐写方法的产生呐，其实很简单，我们都知道三原色，即：红绿蓝。就是大多数的颜色都可以通过三原色的不同比例调剂出来。</p>
+<h3 id="目前我了解到的关于LSB隐写的方法有两种："><a href="#目前我了解到的关于LSB隐写的方法有两种：" class="headerlink" title="目前我了解到的关于LSB隐写的方法有两种："></a>目前我了解到的关于LSB隐写的方法有两种：</h3><p>1、用写好的脚本得到flag；<br>2、用工具，这里介绍一个神器<strong>Stegsolve</strong>，下载地址：<a href="http://www.pc6.com/softview/SoftView_539075.html" target="_blank" rel="noopener">Stegsolve下载</a></p>
+<h2 id="python脚本实现LSB隐写"><a href="#python脚本实现LSB隐写" class="headerlink" title="python脚本实现LSB隐写"></a>python脚本实现LSB隐写</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: UTF-8 -*-</span><br><span class="line">from PIL import Image</span><br><span class="line">def plus(str):</span><br><span class="line">      #Python zfill() 方法返回指定长度的字符串，原字符串右对齐，前面填充0。</span><br><span class="line">    return str.zfill(8)</span><br><span class="line">def get_key(strr):</span><br><span class="line">      #获取要隐藏的文件内容</span><br><span class="line">    tmp = strr</span><br><span class="line">    f = file(tmp,&quot;rb&quot;)</span><br><span class="line">    str = &quot;&quot;</span><br><span class="line">    s = f.read()</span><br><span class="line">    for i in range(len(s)):</span><br><span class="line">         #逐个字节将要隐藏的文件内容转换为二进制，并拼接起来</span><br><span class="line">         #1.先用ord()函数将s的内容逐个转换为ascii码</span><br><span class="line">         #2.使用bin()函数将十进制的ascii码转换为二进制</span><br><span class="line">         #3.由于bin()函数转换二进制后，二进制字符串的前面会有&quot;0b&quot;来表示这个字符串是二进制形式，所以用replace()替换为空</span><br><span class="line">         #4.又由于ascii码转换二进制后是七位，而正常情况下每个字符由8位二进制组成，所以使用自定义函数plus将其填充为8位</span><br><span class="line">        str = str+plus(bin(ord(s[i])).replace(&apos;0b&apos;,&apos;&apos;))</span><br><span class="line">        #print str</span><br><span class="line">    f.closed</span><br><span class="line">    return str</span><br><span class="line">def mod(x,y):</span><br><span class="line">    return x%y;</span><br><span class="line">#str1为载体图片路径，str2为隐写文件，str3为加密图片保存的路径</span><br><span class="line">def func(str1,str2,str3): </span><br><span class="line">    im = Image.open(str1)</span><br><span class="line">    #获取图片的宽和高</span><br><span class="line">    width = im.size[0]</span><br><span class="line">    print &quot;width:&quot;+str(width)+&quot;\n&quot;</span><br><span class="line">    height = im.size[1]</span><br><span class="line">    print &quot;height:&quot;+str(height)+&quot;\n&quot;</span><br><span class="line">    count = 0</span><br><span class="line">    #获取需要隐藏的信息</span><br><span class="line">    key = get_key(str2)</span><br><span class="line">    keylen = len(key)</span><br><span class="line">    for h in range(0,height):</span><br><span class="line">        for w in range(0,width):</span><br><span class="line">            pixel = im.getpixel((w,h))</span><br><span class="line">            a=pixel[0]</span><br><span class="line">            b=pixel[1]</span><br><span class="line">            c=pixel[2]</span><br><span class="line">            if count == keylen:</span><br><span class="line">                break</span><br><span class="line">            #下面的操作是将信息隐藏进去</span><br><span class="line">            #分别将每个像素点的RGB值余2，这样可以去掉最低位的值</span><br><span class="line">            #再从需要隐藏的信息中取出一位，转换为整型</span><br><span class="line">            #两值相加，就把信息隐藏起来了</span><br><span class="line">            a= a-mod(a,2)+int(key[count])</span><br><span class="line">            count+=1</span><br><span class="line">            if count == keylen:</span><br><span class="line">                im.putpixel((w,h),(a,b,c))</span><br><span class="line">                break</span><br><span class="line">            b =b-mod(b,2)+int(key[count])</span><br><span class="line">            count+=1</span><br><span class="line">            if count == keylen:</span><br><span class="line">                im.putpixel((w,h),(a,b,c))</span><br><span class="line">                break</span><br><span class="line">            c= c-mod(c,2)+int(key[count])</span><br><span class="line">            count+=1</span><br><span class="line">            if count == keylen:</span><br><span class="line">                im.putpixel((w,h),(a,b,c))</span><br><span class="line">                break</span><br><span class="line">            if count % 3 == 0:</span><br><span class="line">                im.putpixel((w,h),(a,b,c))</span><br><span class="line">    im.save(str3)</span><br><span class="line">#原图</span><br><span class="line">old = &quot;E:\Users\\test.png&quot;</span><br><span class="line">#处理后输出的图片路径</span><br><span class="line">new = &quot;E:\Users\\LSBencode.png&quot;</span><br><span class="line">#需要隐藏的信息</span><br><span class="line">enc = &quot;E:\Users\\flag.txt&quot;</span><br><span class="line">func(old,enc,new)</span><br></pre></td></tr></table></figure>
+<p>在此我们以一道例题为例：<br><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy85NTIxMTQwLTdhOGQ4NmZhNTVkOTcwZjgucG5n" alt="在这里插入图片描述"><br>这是从网上获取的一张照片，我们运行LSB_encode.py脚本来将flag.txt 中 zhangyuxiaowanzi 的内容加密到这张图片中。</p>
+<p>加密成功，获取图片LSBencode.png<br><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy85NTIxMTQwLTc5YTM4MmVjYTE4YTk3M2QucG5n" alt="在这里插入图片描述"></p>
+<h2 id="工具实现LSB隐写"><a href="#工具实现LSB隐写" class="headerlink" title="工具实现LSB隐写"></a>工具实现LSB隐写</h2><p>Stegsolve不但可以控制图片每个颜色通道的关闭开启的效果，而且可以指定通道的内容用HEX来显示进行预览，也可以将不同的颜色通道进行XOR、OR、AND、ADD等操作来发现通道中隐藏的内容。</p>
+<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><p>对于这类隐写题，可以多去做些题目了解，因为出题方式多种多样。让我们一起进步吧，加油哦！！</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-给博客添加音乐" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/07/10/给博客添加音乐/" class="article-date">
+      <time datetime="2019-07-10T10:13:33.108Z" itemprop="datePublished">2019-07-10</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/10/给博客添加音乐/">给博客添加音乐</a>
+    </h1>
+  
+
+      </header>
+      
     
     <div class="article-entry" itemprop="articleBody">
       

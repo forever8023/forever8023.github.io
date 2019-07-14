@@ -15,21 +15,20 @@
 
 
 
-<meta name="description" content="SQL盲注首先让我们一起来了解一下SQL注入的原理： SQL注入攻击指的是通过构建特殊的输入作为参数传入Web应用程序，而这些输入大都是SQL语法里的一些组合，通过执行SQL语句进而执行攻击者所要的操作，其主要原因是程序没有细致地过滤用户输入的数据，致使非法数据侵入系统。 接下来就是如何防范：1.永远不要信任用户的输入。对用户的输入进行校验，可以通过正则表达式，或限制长度；对单引号和双”-“进行转">
+<meta name="description" content="图片隐写—LSB隐写前言：小赤也是初学图片隐写，而且呢也是只了解了LSB隐写，对于LSB隐写应该是最常见的也是最实用的吧，今天就给大家分享一下我的了解。 LSB隐写简介LSB全称leastsignificant bit，是一种基于图片最低有效位修改储存信息的隐写方法，为什么会有这种隐写方法的产生呐，其实很简单，我们都知道三原色，即：红绿蓝。就是大多数的颜色都可以通过三原色的不同比例调剂出来。 目前">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SQL注入--盲注">
-<meta property="og:url" content="http://yoursite.com/2019/05/22/SQL注入——盲注/index.html">
+<meta property="og:title" content="CSS学习过程">
+<meta property="og:url" content="http://yoursite.com/2019/07/14/LSB隐写/index.html">
 <meta property="og:site_name" content="Forever8023">
-<meta property="og:description" content="SQL盲注首先让我们一起来了解一下SQL注入的原理： SQL注入攻击指的是通过构建特殊的输入作为参数传入Web应用程序，而这些输入大都是SQL语法里的一些组合，通过执行SQL语句进而执行攻击者所要的操作，其主要原因是程序没有细致地过滤用户输入的数据，致使非法数据侵入系统。 接下来就是如何防范：1.永远不要信任用户的输入。对用户的输入进行校验，可以通过正则表达式，或限制长度；对单引号和双”-“进行转">
+<meta property="og:description" content="图片隐写—LSB隐写前言：小赤也是初学图片隐写，而且呢也是只了解了LSB隐写，对于LSB隐写应该是最常见的也是最实用的吧，今天就给大家分享一下我的了解。 LSB隐写简介LSB全称leastsignificant bit，是一种基于图片最低有效位修改储存信息的隐写方法，为什么会有这种隐写方法的产生呐，其实很简单，我们都知道三原色，即：红绿蓝。就是大多数的颜色都可以通过三原色的不同比例调剂出来。 目前">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://images2015.cnblogs.com/blog/181321/201612/181321-20161216163301558-866388304.gif">
-<meta property="og:image" content="https://images2015.cnblogs.com/blog/181321/201612/181321-20161216170931886-1916393652.gif">
-<meta property="og:image" content="https://images2015.cnblogs.com/blog/181321/201612/181321-20161219093210760-168383272.gif">
-<meta property="og:updated_time" content="2019-05-22T11:42:03.892Z">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy85NTIxMTQwLTdhOGQ4NmZhNTVkOTcwZjgucG5n">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy85NTIxMTQwLTc5YTM4MmVjYTE4YTk3M2QucG5n">
+<meta property="og:updated_time" content="2019-07-14T03:16:38.820Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SQL注入--盲注">
-<meta name="twitter:description" content="SQL盲注首先让我们一起来了解一下SQL注入的原理： SQL注入攻击指的是通过构建特殊的输入作为参数传入Web应用程序，而这些输入大都是SQL语法里的一些组合，通过执行SQL语句进而执行攻击者所要的操作，其主要原因是程序没有细致地过滤用户输入的数据，致使非法数据侵入系统。 接下来就是如何防范：1.永远不要信任用户的输入。对用户的输入进行校验，可以通过正则表达式，或限制长度；对单引号和双”-“进行转">
-<meta name="twitter:image" content="https://images2015.cnblogs.com/blog/181321/201612/181321-20161216163301558-866388304.gif">
+<meta name="twitter:title" content="CSS学习过程">
+<meta name="twitter:description" content="图片隐写—LSB隐写前言：小赤也是初学图片隐写，而且呢也是只了解了LSB隐写，对于LSB隐写应该是最常见的也是最实用的吧，今天就给大家分享一下我的了解。 LSB隐写简介LSB全称leastsignificant bit，是一种基于图片最低有效位修改储存信息的隐写方法，为什么会有这种隐写方法的产生呐，其实很简单，我们都知道三原色，即：红绿蓝。就是大多数的颜色都可以通过三原色的不同比例调剂出来。 目前">
+<meta name="twitter:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy85NTIxMTQwLTdhOGQ4NmZhNTVkOTcwZjgucG5n">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -61,7 +60,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>SQL注入--盲注 | Forever8023</title>
+<title>CSS学习过程 | Forever8023</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -272,11 +271,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-SQL注入——盲注" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-LSB隐写" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/05/22/SQL注入——盲注/" class="article-date">
-      <time datetime="2019-05-22T11:41:29.223Z" itemprop="datePublished">2019-05-22</time>
+      <a href="/2019/07/14/LSB隐写/" class="article-date">
+      <time datetime="2019-07-14T03:15:19.703Z" itemprop="datePublished">2019-07-14</time>
 </a>
 
 
@@ -291,7 +290,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      SQL注入--盲注
+      CSS学习过程
     </h1>
   
 
@@ -308,16 +307,14 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="SQL盲注"><a href="#SQL盲注" class="headerlink" title="SQL盲注"></a>SQL盲注</h1><h2 id="首先让我们一起来了解一下SQL注入的原理："><a href="#首先让我们一起来了解一下SQL注入的原理：" class="headerlink" title="首先让我们一起来了解一下SQL注入的原理："></a>首先让我们一起来了解一下SQL注入的原理：</h2><p> SQL注入攻击指的是通过构建特殊的输入作为参数传入Web应用程序，而这些输入大都是SQL语法里的一些组合，通过执行SQL语句进而执行攻击者所要的操作，其主要原因是程序没有细致地过滤用户输入的数据，致使非法数据侵入系统。</p>
-<h2 id="接下来就是如何防范："><a href="#接下来就是如何防范：" class="headerlink" title="接下来就是如何防范："></a>接下来就是如何防范：</h2><p>1.永远不要信任用户的输入。对用户的输入进行校验，可以通过正则表达式，或限制长度；对单引号和双”-“进行转换等。<br>2.永远不要使用动态拼装sql，可以使用参数化的sql或者直接使用存储过程进行数据查询存取。<br>3.永远不要使用管理员权限的数据库连接，为每个应用使用单独的权限有限的数据库连接。<br>4.不要把机密信息直接存放，加密或者hash掉密码和敏感的信息。<br>5.应用的异常信息应该给出尽可能少的提示，最好使用自定义的错误信息对原始错误信息进行包装<br>6.sql注入的检测方法一般采取辅助软件或网站平台来检测，软件一般采用sql注入检测工具jsky，网站平台就有亿思网站安全平台检测工具。MDCSOFT SCAN等。采用MDCSOFT-IPS可以有效的防御SQL注入，XSS攻击等。</p>
-<h3 id="SQL盲注的过程"><a href="#SQL盲注的过程" class="headerlink" title="SQL盲注的过程"></a>SQL盲注的过程</h3><p>1、<strong>测试有没有注入漏洞</strong><br>浏览器输入 <code>http://localhost:2003/newsInfo?id=1  and 1=1</code>    页面正常   后台执行的SQL语句为：select <em> from news where id=1 and 1=1<br>输入 <code>http://localhost:2003/newsInfo?id=1  and 1=2</code>  空白页面，数据无法显示(后台执行的SQL语句为：select </em> from news where id=1 and 1=2)，页面有注入漏洞。<br><img src="https://images2015.cnblogs.com/blog/181321/201612/181321-20161216163301558-866388304.gif" alt="在这里插入图片描述"><br>2、<strong>猜解数据库表名</strong><br>既然有漏洞，就准备做点事情咯，主要目的是拿到后台管理员密码，先看看数据库里有哪些表吧<br>  <code>http://localhost:2003/newsInfo?id=1 and (select count(*) from userInfo) &gt;=0</code>   没有数据，继续猜解…… N次，<br>终于 <code>http://localhost:2003/newsInfo?id=1 and (select count(*) from [user]) &gt;=0</code><br> 这里是利用 后面的条件查询数据库表，如果表不存在，后台就报错了，本测试示例后台对异常做了处理，但是数据肯定是出不来的。<br> <img src="https://images2015.cnblogs.com/blog/181321/201612/181321-20161216170931886-1916393652.gif" alt="在这里插入图片描述"><br> 数据显示正常，说明表 <strong>user</strong> 存在，判断 为 用户表<br> 3、<strong>表字段猜解</strong><br><code>http://localhost:2003/newsInfo?id=1 and (select count(pwd) from [user]) &gt;=0</code>  页面数据正常<br>说名表 <strong>user</strong> 存在 <strong>pwd</strong> 字段<br>同理  确认表 <strong>user</strong> 里存在  <strong>name</strong> 字段。<br>4、<strong>查询表里有多少条数据</strong><br><code>http://localhost:2003/newsInfo?id=1 and (select count(*) from [user]) &gt;=5</code> 返回空白页面</p>
-<p><code>http://localhost:2003/newsInfo?id=1 and (select count(*) from [user]) &gt;=2</code> 返回空白页面</p>
-<p><code>http://localhost:2003/newsInfo?id=1 and (select count(*) from [user]) =1</code>  页面正常  ，只有一个用户<br>5、<strong>用户名猜解</strong><br> ★<code>http://localhost:2003/newsInfo?id=1 and (select len(name) from [user]) =5</code> ，返回正常页面,确定用户名为5位字符<br> ★<b>  用户名猜解<br>         第一位    <code>http://localhost:2003/newsInfo?id=1 and (select ASCII(SUBSTRING(name,1,1)) from [user])&gt; 20</code>                                      返回正常页面 ……….. 下面猜解 N次<br> <code>http://localhost:2003/newsInfo?id=1 and (select ASCII(SUBSTRING(name,1,1)) from [user])&gt; 96</code>， 返回正常页面<br><code>http://localhost:2003/newsInfo?id=1 and (select ASCII(SUBSTRING(name,1,1)) from [user])&gt; 97</code>   返回空白页面了<br>这说明 第一位 ASCII值为 97，对应字母 a<br> 以此类推 ，第2位，第3位 …..第5位， 猜解出用户名 admin ，在这里主要用了 ASCII  和 SUBSTRING 函数，如果对这两个函数不熟悉请自行百度，下面是猜解过程截图。<br> <img src="https://images2015.cnblogs.com/blog/181321/201612/181321-20161219093210760-168383272.gif" alt="在这里插入图片描述"><br> 6、<strong>密码猜解</strong><br> 用户名搞定了，密码思路也是一样</b></p>
-<pre><code>&lt;A&gt; 先确定密码长度
-
-&lt;B&gt; 逐个密码猜解，这里就不写注入的sql语句了，同 用户名 猜解
-</code></pre><p>   至此，整改网站管理后台沦陷。</p>
-<h1 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h1><p>SQL注入的手法相当灵活，在注入的时候会碰到很多意外的情况。能不能根据具体情况进行分析，构造巧妙的SQL语句，从而成功获取想要的数据，是高手与“菜鸟”的根本区别。</p>
+        <h1 id="图片隐写—LSB隐写"><a href="#图片隐写—LSB隐写" class="headerlink" title="图片隐写—LSB隐写"></a>图片隐写—LSB隐写</h1><h2 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h2><p>小赤也是初学图片隐写，而且呢也是只了解了LSB隐写，对于LSB隐写应该是最常见的也是最实用的吧，今天就给大家分享一下我的了解。</p>
+<h3 id="LSB隐写简介"><a href="#LSB隐写简介" class="headerlink" title="LSB隐写简介"></a>LSB隐写简介</h3><p>LSB全称leastsignificant bit，是一种基于图片最低有效位修改储存信息的隐写方法，为什么会有这种隐写方法的产生呐，其实很简单，我们都知道三原色，即：红绿蓝。就是大多数的颜色都可以通过三原色的不同比例调剂出来。</p>
+<h3 id="目前我了解到的关于LSB隐写的方法有两种："><a href="#目前我了解到的关于LSB隐写的方法有两种：" class="headerlink" title="目前我了解到的关于LSB隐写的方法有两种："></a>目前我了解到的关于LSB隐写的方法有两种：</h3><p>1、用写好的脚本得到flag；<br>2、用工具，这里介绍一个神器<strong>Stegsolve</strong>，下载地址：<a href="http://www.pc6.com/softview/SoftView_539075.html" target="_blank" rel="noopener">Stegsolve下载</a></p>
+<h2 id="python脚本实现LSB隐写"><a href="#python脚本实现LSB隐写" class="headerlink" title="python脚本实现LSB隐写"></a>python脚本实现LSB隐写</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: UTF-8 -*-</span><br><span class="line">from PIL import Image</span><br><span class="line">def plus(str):</span><br><span class="line">      #Python zfill() 方法返回指定长度的字符串，原字符串右对齐，前面填充0。</span><br><span class="line">    return str.zfill(8)</span><br><span class="line">def get_key(strr):</span><br><span class="line">      #获取要隐藏的文件内容</span><br><span class="line">    tmp = strr</span><br><span class="line">    f = file(tmp,&quot;rb&quot;)</span><br><span class="line">    str = &quot;&quot;</span><br><span class="line">    s = f.read()</span><br><span class="line">    for i in range(len(s)):</span><br><span class="line">         #逐个字节将要隐藏的文件内容转换为二进制，并拼接起来</span><br><span class="line">         #1.先用ord()函数将s的内容逐个转换为ascii码</span><br><span class="line">         #2.使用bin()函数将十进制的ascii码转换为二进制</span><br><span class="line">         #3.由于bin()函数转换二进制后，二进制字符串的前面会有&quot;0b&quot;来表示这个字符串是二进制形式，所以用replace()替换为空</span><br><span class="line">         #4.又由于ascii码转换二进制后是七位，而正常情况下每个字符由8位二进制组成，所以使用自定义函数plus将其填充为8位</span><br><span class="line">        str = str+plus(bin(ord(s[i])).replace(&apos;0b&apos;,&apos;&apos;))</span><br><span class="line">        #print str</span><br><span class="line">    f.closed</span><br><span class="line">    return str</span><br><span class="line">def mod(x,y):</span><br><span class="line">    return x%y;</span><br><span class="line">#str1为载体图片路径，str2为隐写文件，str3为加密图片保存的路径</span><br><span class="line">def func(str1,str2,str3): </span><br><span class="line">    im = Image.open(str1)</span><br><span class="line">    #获取图片的宽和高</span><br><span class="line">    width = im.size[0]</span><br><span class="line">    print &quot;width:&quot;+str(width)+&quot;\n&quot;</span><br><span class="line">    height = im.size[1]</span><br><span class="line">    print &quot;height:&quot;+str(height)+&quot;\n&quot;</span><br><span class="line">    count = 0</span><br><span class="line">    #获取需要隐藏的信息</span><br><span class="line">    key = get_key(str2)</span><br><span class="line">    keylen = len(key)</span><br><span class="line">    for h in range(0,height):</span><br><span class="line">        for w in range(0,width):</span><br><span class="line">            pixel = im.getpixel((w,h))</span><br><span class="line">            a=pixel[0]</span><br><span class="line">            b=pixel[1]</span><br><span class="line">            c=pixel[2]</span><br><span class="line">            if count == keylen:</span><br><span class="line">                break</span><br><span class="line">            #下面的操作是将信息隐藏进去</span><br><span class="line">            #分别将每个像素点的RGB值余2，这样可以去掉最低位的值</span><br><span class="line">            #再从需要隐藏的信息中取出一位，转换为整型</span><br><span class="line">            #两值相加，就把信息隐藏起来了</span><br><span class="line">            a= a-mod(a,2)+int(key[count])</span><br><span class="line">            count+=1</span><br><span class="line">            if count == keylen:</span><br><span class="line">                im.putpixel((w,h),(a,b,c))</span><br><span class="line">                break</span><br><span class="line">            b =b-mod(b,2)+int(key[count])</span><br><span class="line">            count+=1</span><br><span class="line">            if count == keylen:</span><br><span class="line">                im.putpixel((w,h),(a,b,c))</span><br><span class="line">                break</span><br><span class="line">            c= c-mod(c,2)+int(key[count])</span><br><span class="line">            count+=1</span><br><span class="line">            if count == keylen:</span><br><span class="line">                im.putpixel((w,h),(a,b,c))</span><br><span class="line">                break</span><br><span class="line">            if count % 3 == 0:</span><br><span class="line">                im.putpixel((w,h),(a,b,c))</span><br><span class="line">    im.save(str3)</span><br><span class="line">#原图</span><br><span class="line">old = &quot;E:\Users\\test.png&quot;</span><br><span class="line">#处理后输出的图片路径</span><br><span class="line">new = &quot;E:\Users\\LSBencode.png&quot;</span><br><span class="line">#需要隐藏的信息</span><br><span class="line">enc = &quot;E:\Users\\flag.txt&quot;</span><br><span class="line">func(old,enc,new)</span><br></pre></td></tr></table></figure>
+<p>在此我们以一道例题为例：<br><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy85NTIxMTQwLTdhOGQ4NmZhNTVkOTcwZjgucG5n" alt="在这里插入图片描述"><br>这是从网上获取的一张照片，我们运行LSB_encode.py脚本来将flag.txt 中 zhangyuxiaowanzi 的内容加密到这张图片中。</p>
+<p>加密成功，获取图片LSBencode.png<br><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy85NTIxMTQwLTc5YTM4MmVjYTE4YTk3M2QucG5n" alt="在这里插入图片描述"></p>
+<h2 id="工具实现LSB隐写"><a href="#工具实现LSB隐写" class="headerlink" title="工具实现LSB隐写"></a>工具实现LSB隐写</h2><p>Stegsolve不但可以控制图片每个颜色通道的关闭开启的效果，而且可以指定通道的内容用HEX来显示进行预览，也可以将不同的颜色通道进行XOR、OR、AND、ADD等操作来发现通道中隐藏的内容。</p>
+<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><p>对于这类隐写题，可以多去做些题目了解，因为出题方式多种多样。让我们一起进步吧，加油哦！！</p>
 
       
     </div>
@@ -326,13 +323,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/05/22/SQL注入——盲注/">SQL注入--盲注</a></p>
+        <p><span>本文标题:</span><a href="/2019/07/14/LSB隐写/">CSS学习过程</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">一诺倾城</a></p>
-        <p><span>发布时间:</span>2019-05-22, 19:41:29</p>
-        <p><span>最后更新:</span>2019-05-22, 19:42:03</p>
+        <p><span>发布时间:</span>2019-07-14, 11:15:19</p>
+        <p><span>最后更新:</span>2019-07-14, 11:16:38</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/05/22/SQL注入——盲注/" title="SQL注入--盲注">http://yoursite.com/2019/05/22/SQL注入——盲注/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/05/22/SQL注入——盲注/　　作者: 一诺倾城" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/07/14/LSB隐写/" title="CSS学习过程">http://yoursite.com/2019/07/14/LSB隐写/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/07/14/LSB隐写/　　作者: 一诺倾城" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -344,16 +341,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/05/22/css学习过程/">
-                    CSS学习过程
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/05/22/XSS攻击/">
-                    XSS攻击
+                <a href="/2019/07/10/给博客添加音乐/">
+                    给博客添加音乐
                 </a>
             </div>
         
@@ -365,7 +356,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SQL盲注"><span class="toc-number">1.</span> <span class="toc-text">SQL盲注</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#首先让我们一起来了解一下SQL注入的原理："><span class="toc-number">1.1.</span> <span class="toc-text">首先让我们一起来了解一下SQL注入的原理：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#接下来就是如何防范："><span class="toc-number">1.2.</span> <span class="toc-text">接下来就是如何防范：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL盲注的过程"><span class="toc-number">1.2.1.</span> <span class="toc-text">SQL盲注的过程</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结："><span class="toc-number">2.</span> <span class="toc-text">总结：</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#图片隐写—LSB隐写"><span class="toc-number">1.</span> <span class="toc-text">图片隐写—LSB隐写</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言："><span class="toc-number">1.1.</span> <span class="toc-text">前言：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#LSB隐写简介"><span class="toc-number">1.1.1.</span> <span class="toc-text">LSB隐写简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#目前我了解到的关于LSB隐写的方法有两种："><span class="toc-number">1.1.2.</span> <span class="toc-text">目前我了解到的关于LSB隐写的方法有两种：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python脚本实现LSB隐写"><span class="toc-number">1.2.</span> <span class="toc-text">python脚本实现LSB隐写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工具实现LSB隐写"><span class="toc-number">1.3.</span> <span class="toc-text">工具实现LSB隐写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结："><span class="toc-number">1.4.</span> <span class="toc-text">总结：</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -401,7 +392,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"SQL注入--盲注　| Forever8023　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"CSS学习过程　| Forever8023　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -421,15 +412,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/05/22/css学习过程/" title="上一篇: CSS学习过程">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/05/22/XSS攻击/" title="下一篇: XSS攻击">
+            <a href="/2019/07/10/给博客添加音乐/" title="下一篇: 给博客添加音乐">
                 <i class="fa fa-angle-right"></i>
             </a>
         
