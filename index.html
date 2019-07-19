@@ -219,7 +219,8 @@
             </div>
         </div>
         <div style="position:absolute; bottom:120px left:auto; width:85%">
-        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=477754663&auto=1&height=66"></iframe>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=86381&auto=1&height=66"></iframe>
+        </div>
     </header>                
 </div>
     </div>
@@ -273,6 +274,77 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-SQL注入类型 " class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/07/19/SQL注入类型 /" class="article-date">
+      <time datetime="2019-07-19T08:36:48.055Z" itemprop="datePublished">2019-07-19</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <hr>
+<h2 id="title：-SQL注入类型"><a href="#title：-SQL注入类型" class="headerlink" title="title： SQL注入类型"></a>title： SQL注入类型</h2><h2 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h2><p>之前了解过SQL盲注，现在有时间了就把SQL注入这一块好好了解一番，现在小痴带大家熟悉一下SQL注入的几种类型；</p>
+<h1 id="SQL注入类型"><a href="#SQL注入类型" class="headerlink" title="SQL注入类型"></a>SQL注入类型</h1><blockquote>
+<p>按照注入点类型分类</p>
+</blockquote>
+<h3 id="（1）-数字型注入点"><a href="#（1）-数字型注入点" class="headerlink" title="（1） 数字型注入点"></a>（1） 数字型注入点</h3><p>许多网页链接有类似的结构 <a href="http://xxx.com/users.php?id=1" target="_blank" rel="noopener">http://xxx.com/users.php?id=1</a> 基于此种形式的注入，一般被叫做数字型注入点，缘由是其注入点 id 类型为数字，在大多数的网页中，诸如 查看用户个人信息，查看文章等，大都会使用这种形式的结构传递id等信息，交给后端，查询出数据库中对应的信息，返回给前台。这一类的 SQL 语句原型大概为 <code>select * from 表名 where id=1</code> 若存在注入，我们可以构造出类似与如下的sql注入语句进行爆破：<code>select * from 表名 where id=1 and 1=1</code></p>
+<h3 id="（2）字符型注入点"><a href="#（2）字符型注入点" class="headerlink" title="（2）字符型注入点"></a>（2）字符型注入点</h3><p>网页链接有类似的结构 <a href="http://xxx.com/users.php?name=admin" target="_blank" rel="noopener">http://xxx.com/users.php?name=admin</a> 这种形式，其注入点 name 类型为字符类型，所以叫字符型注入点。这一类的 SQL 语句原型大概为 <code>select * from 表名 where name=&#39;admin&#39;</code> 值得注意的是这里相比于数字型注入类型的sql语句原型多了引号，可以是单引号或者是双引号。若存在注入，我们可以构造出类似与如下的sql注入语句进行爆破：<code>select * from 表名 where name=&#39;admin&#39; and 1=1 &#39;</code> 我们需要将这些烦人的引号给处理掉。</p>
+<h3 id="（3）搜索性注入点"><a href="#（3）搜索性注入点" class="headerlink" title="（3）搜索性注入点"></a>（3）搜索性注入点</h3><p>这是一类特殊的注入类型。这类注入主要是指在进行数据搜索时没过滤搜索参数，一般在链接地址中有 <code>&quot;keyword=关键字&quot;</code> 有的不显示在的链接地址里面，而是直接通过搜索框表单提交。此类注入点提交的 SQL 语句，其原形大致为：<code>select * from 表名 where 字段 like &#39;%关键字%&#39;</code> 若存在注入，我们可以构造出类似与如下的sql注入语句进行爆破：<code>select * from 表名 where 字段 like &#39;%测试%&#39; and &#39;%1%&#39;=&#39;%1%&#39;</code></p>
+<blockquote>
+<p>按照数据提交的方式来分类</p>
+</blockquote>
+<h3 id="1、GET注入"><a href="#1、GET注入" class="headerlink" title="1、GET注入"></a>1、GET注入</h3><p>提交数据的方式是 GET , 注入点的位置在 GET 参数部分。比如有这样的一个链接<a href="http://xxx.com/news.php?id=1" target="_blank" rel="noopener">http://xxx.com/news.php?id=1</a> , id 是注入点。</p>
+<h3 id="2、POST注入"><a href="#2、POST注入" class="headerlink" title="2、POST注入"></a>2、POST注入</h3><p>使用 POST 方式提交数据，注入点位置在 POST 数据部分，常发生在表单中。</p>
+<h3 id="3、Cookie-注入"><a href="#3、Cookie-注入" class="headerlink" title="3、Cookie 注入"></a>3、Cookie 注入</h3><p>HTTP 请求的时候会带上客户端的 Cookie, 注入点存在 Cookie 当中的某个字段中。</p>
+<h3 id="4、HTTP-头部注入"><a href="#4、HTTP-头部注入" class="headerlink" title="4、HTTP 头部注入"></a>4、HTTP 头部注入</h3><p>注入点在 HTTP 请求头部的某个字段中。比如存在 User-Agent 字段中。严格讲的话，Cookie 其实应该也是算头部注入的一种形式。因为在 HTTP 请求的时候，Cookie 是头部的一个字段。</p>
+<blockquote>
+<p>按照执行效果来分类</p>
+</blockquote>
+<h3 id="（1）基于布尔的盲注"><a href="#（1）基于布尔的盲注" class="headerlink" title="（1）基于布尔的盲注"></a>（1）基于布尔的盲注</h3><p>即可以根据返回页面判断条件真假的注入。</p>
+<h3 id="（2）基于时间的盲注"><a href="#（2）基于时间的盲注" class="headerlink" title="（2）基于时间的盲注"></a>（2）基于时间的盲注</h3><p>即不能根据页面返回内容判断任何信息，用条件语句查看时间延迟语句是否执行（即页面返回时间是否增加）来判断。</p>
+<h3 id="（3）基于报错注入"><a href="#（3）基于报错注入" class="headerlink" title="（3）基于报错注入"></a>（3）基于报错注入</h3><p>即页面会返回错误信息，或者把注入的语句的结果直接返回在页面中。</p>
+<p>1、单引号<br>2、双引号<br>3、基于数字型注入</p>
+<h3 id="（4）联合查询注入"><a href="#（4）联合查询注入" class="headerlink" title="（4）联合查询注入"></a>（4）联合查询注入</h3><p>可以使用union的情况下的注入。</p>
+<h3 id="（5）堆查询注入"><a href="#（5）堆查询注入" class="headerlink" title="（5）堆查询注入"></a>（5）堆查询注入</h3><p>可以同时执行多条语句的执行时的注入。</p>
+<h3 id="（6）宽字节注入"><a href="#（6）宽字节注入" class="headerlink" title="（6）宽字节注入"></a>（6）宽字节注入</h3><h2 id="实现SQL注入的几个关键点"><a href="#实现SQL注入的几个关键点" class="headerlink" title="实现SQL注入的几个关键点"></a>实现SQL注入的几个关键点</h2><p>1、闭合标签<br>2、SQL语句<br>3、注释<br>在这里介绍一个万能语句<strong>’or 1=1#</strong><br><code>’</code> 这个单引号就是闭合标签用的</p>
+<p>  #是注释符，#后面的语句都会被注释掉</p>
+<h1 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h1><p>以上便是SQL注入的各种类型了，后续我也会找常见的几种注入给大家展示</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-LSB隐写" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -292,7 +364,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/14/LSB隐写/">CSS学习过程</a>
+      <a class="article-title" href="/2019/07/14/LSB隐写/">图片隐写--LSB隐写</a>
     </h1>
   
 
