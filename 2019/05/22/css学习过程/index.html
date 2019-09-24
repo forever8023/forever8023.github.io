@@ -10,17 +10,17 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="css是层叠样式表在主页制作时采用CSS技术，可以有效地对页面的布局、字体、颜色、背景和其它效果实现更加精确的控制。 html+css 内容  肉体html：结构       css：样子css主要由两大部分组成（1.选择器   2.声明） css语法div {                                                      /   要注释的内容  /">
+  <meta name="description" content="css是层叠样式表在主页制作时采用CSS技术，可以有效地对页面的布局、字体、颜色、背景和其它效果实现更加精确的控制。 html+css 内容  肉体html：结构       css：样子css主要由两大部分组成（1.选择器   2.声明）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSS学习过程">
 <meta property="og:url" content="http://yoursite.com/2019/05/22/css学习过程/index.html">
 <meta property="og:site_name" content="Forever8023">
-<meta property="og:description" content="css是层叠样式表在主页制作时采用CSS技术，可以有效地对页面的布局、字体、颜色、背景和其它效果实现更加精确的控制。 html+css 内容  肉体html：结构       css：样子css主要由两大部分组成（1.选择器   2.声明） css语法div {                                                      /   要注释的内容  /">
+<meta property="og:description" content="css是层叠样式表在主页制作时采用CSS技术，可以有效地对页面的布局、字体、颜色、背景和其它效果实现更加精确的控制。 html+css 内容  肉体html：结构       css：样子css主要由两大部分组成（1.选择器   2.声明）">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-28T11:29:37.399Z">
+<meta property="og:updated_time" content="2019-09-24T11:37:32.734Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS学习过程">
-<meta name="twitter:description" content="css是层叠样式表在主页制作时采用CSS技术，可以有效地对页面的布局、字体、颜色、背景和其它效果实现更加精确的控制。 html+css 内容  肉体html：结构       css：样子css主要由两大部分组成（1.选择器   2.声明） css语法div {                                                      /   要注释的内容  /">
+<meta name="twitter:description" content="css是层叠样式表在主页制作时采用CSS技术，可以有效地对页面的布局、字体、颜色、背景和其它效果实现更加精确的控制。 html+css 内容  肉体html：结构       css：样子css主要由两大部分组成（1.选择器   2.声明）">
   
     <link rel="alternative" href="/atom.xml" title="Forever8023" type="application/atom+xml">
   
@@ -61,7 +61,7 @@
     <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
       
       
-      <a class="forkMe" style="position:absolute;z-index:999;top:0;right:0.5em" href="https://github.com/JoeyBling/hexo-theme-yilia-plus"
+      <a class="forkMe" style="position:absolute;z-index:999;top:0;right:0.5em" href="https://github.com/forever8023"
         target="_blank"><img width="149" height="149" src="/img/forkme.png"
           class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
       
@@ -185,6 +185,7 @@
     
     <h1 id="css是层叠样式表"><a href="#css是层叠样式表" class="headerlink" title="css是层叠样式表"></a>css是层叠样式表</h1><p><strong>在主页制作时采用CSS技术，可以有效地对页面的布局、字体、颜色、背景和其它效果实现更加精确的控制。</strong></p>
 <h2 id="html-css-内容-肉体"><a href="#html-css-内容-肉体" class="headerlink" title="html+css 内容  肉体"></a>html+css 内容  肉体</h2><p>html：结构       css：样子<br>css主要由两大部分组成（1.选择器   2.声明）</p>
+<a id="more"></a>
 <h3 id="css语法"><a href="#css语法" class="headerlink" title="css语法"></a>css语法</h3><p>div {                                                      /<em>   要注释的内容  </em>/<br>    属性名：属性值；<br>    color：rgb(255,0,0);             纯红色<br>}<br>颜色（rgb色彩模式：）<br>R 红色      G  绿色   B  蓝色<br>浅  深    0-255           <em>EE是16进制数表示255</em></p>
 <h3 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h3><p>通过选择器   可以找到html里的元素并且把选择器后边的样式传递给元素；<br>4个大类   （基本选择器   组合   属性    伪元素）<br>1）基本选择器<br>*通配符        标签div       id选择器   class<br>2）兄弟选择器<br> 如：p + p { color:#f00; }<br>3)  属性选择器<br>  如： p[title] { color:#f00; }<br> 4) 伪元素选择器<br> 如：E:first-line，E:before</p>
 <h3 id="避免多余选择器"><a href="#避免多余选择器" class="headerlink" title="避免多余选择器"></a>避免多余选择器</h3><p> 有时候你会有如下的写法：<br> ul li { … }<br>ol li { … }<br>table tr td { … }<br>但实际上这是没必要的写法，因为<code>&lt;li&gt;</code>会且只会与<code>&lt;ul&gt;</code>或<code>&lt;ol&gt;</code>连用，就像<code>&lt;td&gt;</code>只能存在于<code>&lt;tr&gt;</code>和<code>&lt;table&gt;</code>中一样，这儿真没有把它们重复一次的必要。</p>
@@ -203,6 +204,7 @@
 2、元素的高度、宽度、行高以及顶和底边距都可设置。
 3、元素宽度在不设置的情况下，是它本身父容器的100%（和父元素的宽度一致），除非设定一个宽度。
 </code></pre><p>在html中，<code>&lt;span&gt;</code>、<code>&lt;a&gt;</code>、<code>&lt;label&gt;</code>、<code>&lt;input&gt;</code>、 <code>&lt;img&gt;</code>、 <code>&lt;strong&gt;</code> 和<code>&lt;em&gt;</code>就是典型的行内元素（inline）元素。块级元素是可以设置宽高的，但是它的实际宽高是本身宽高+padding。block元素要单独占一行。内联元素不单独占一行，给他设置宽高是没有用的。<br><strong>空元素</strong><br>知名的空元素： <code>&lt;br&gt; &lt;hr&gt; &lt;img&gt; &lt;input&gt; &lt;link&gt; &lt;meta&gt;</code><br>鲜为人知的是： <code>&lt;area&gt; &lt;base&gt; &lt;col&gt; &lt;command&gt; &lt;embed&gt; &lt;keygen&gt; &lt;param&gt; &lt;source&gt; &lt;track&gt; &lt;wbr&gt;</code></p>
+<p>​    </p>
 
     
 
@@ -601,7 +603,7 @@
     	<section class="tools-section tools-section-me" q-show="aboutme">
         
           
-  	  		<div class="aboutme-wrap" id="aboutme">主要涉及技术：<br>Java后端开发、聚合支付、<br>公众号开发、开源爱好者、Linux<br><br>联系QQ:2434387555<br><br>很惭愧<br><br>只做了一点微小的工作<br>谢谢大家</div>
+  	  		<div class="aboutme-wrap" id="aboutme">主要涉及技术：<br>Java后端开发、聚合支付、<br>公众号开发、开源爱好者、Linux<br><br>联系QQ:1277732873<br><br>很惭愧<br><br>只做了一点微小的工作<br>谢谢大家</div>
   	  	
     	</section>
     
@@ -688,6 +690,56 @@
   
   <!-- <script async type="text/javascript" size="90" alpha="0.2" zIndex="0" src="/plugins/ribbon.js/ribbon.min.js"></script> -->
   
+  
+    <script type="text/javascript" src="/plugins/live2d-widget.js/L2Dwidget.min.js"></script>
+<script type="text/javascript">
+  /**
+   * 完整配置请参考：https://l2dwidget.js.org/docs/class/src/index.js~L2Dwidget.html#instance-method-init
+   */
+  var pluginModelPath = "assets/", // 模型的文件路径，无需更改
+    pluginRootPath = "/live2d_models/"; // 插件的路径，无需更改
+  //特定的模型json文件名称
+  var modelPathJson = {
+    "epsilon2_1": "Epsilon2.1",
+    "gf": "Gantzert_Felixander",
+    "haru/01": "haru01",
+    "haru/02": "haru02",
+    "nietzsche": "nietzche"
+  }
+
+  
+    var modelName = "hibiki";
+  
+
+  var modelJsonPath = "";
+  if (modelPathJson[modelName]) {
+    modelJsonPath = pluginRootPath + modelName + "/" + pluginModelPath + modelPathJson[modelName] +
+      ".model.json";
+  } else {
+    modelJsonPath = pluginRootPath + modelName + "/" + pluginModelPath + modelName + ".model.json";
+  }
+  L2Dwidget.init({
+    model: {
+      jsonPath: modelJsonPath
+    },
+    display: {
+       position: "right", 
+       width: 145, 
+       height: 315, 
+       hOffset: 50, 
+      
+    },
+    mobile: {
+       show: false, 
+       scale: 0.6 
+    },
+    react: {
+       opacity: 0.8 
+    }
+  })
+
+</script>
+
   
   
 </body>

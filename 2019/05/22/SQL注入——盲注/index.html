@@ -10,20 +10,20 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="SQL盲注首先让我们一起来了解一下SQL注入的原理： SQL注入攻击指的是通过构建特殊的输入作为参数传入Web应用程序，而这些输入大都是SQL语法里的一些组合，通过执行SQL语句进而执行攻击者所要的操作，其主要原因是程序没有细致地过滤用户输入的数据，致使非法数据侵入系统。 接下来就是如何防范：1.永远不要信任用户的输入。对用户的输入进行校验，可以通过正则表达式，或限制长度；对单引号和双”-“进行转">
+  <meta name="description" content="SQL盲注首先让我们一起来了解一下SQL注入的原理： SQL注入攻击指的是通过构建特殊的输入作为参数传入Web应用程序，而这些输入大都是SQL语法里的一些组合，通过执行SQL语句进而执行攻击者所要的操作，其主要原因是程序没有细致地过滤用户输入的数据，致使非法数据侵入系统。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SQL注入--盲注">
 <meta property="og:url" content="http://yoursite.com/2019/05/22/SQL注入——盲注/index.html">
 <meta property="og:site_name" content="Forever8023">
-<meta property="og:description" content="SQL盲注首先让我们一起来了解一下SQL注入的原理： SQL注入攻击指的是通过构建特殊的输入作为参数传入Web应用程序，而这些输入大都是SQL语法里的一些组合，通过执行SQL语句进而执行攻击者所要的操作，其主要原因是程序没有细致地过滤用户输入的数据，致使非法数据侵入系统。 接下来就是如何防范：1.永远不要信任用户的输入。对用户的输入进行校验，可以通过正则表达式，或限制长度；对单引号和双”-“进行转">
+<meta property="og:description" content="SQL盲注首先让我们一起来了解一下SQL注入的原理： SQL注入攻击指的是通过构建特殊的输入作为参数传入Web应用程序，而这些输入大都是SQL语法里的一些组合，通过执行SQL语句进而执行攻击者所要的操作，其主要原因是程序没有细致地过滤用户输入的数据，致使非法数据侵入系统。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://images2015.cnblogs.com/blog/181321/201612/181321-20161216163301558-866388304.gif">
 <meta property="og:image" content="https://images2015.cnblogs.com/blog/181321/201612/181321-20161216170931886-1916393652.gif">
 <meta property="og:image" content="https://images2015.cnblogs.com/blog/181321/201612/181321-20161219093210760-168383272.gif">
-<meta property="og:updated_time" content="2019-05-22T11:42:03.892Z">
+<meta property="og:updated_time" content="2019-09-24T11:39:19.055Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SQL注入--盲注">
-<meta name="twitter:description" content="SQL盲注首先让我们一起来了解一下SQL注入的原理： SQL注入攻击指的是通过构建特殊的输入作为参数传入Web应用程序，而这些输入大都是SQL语法里的一些组合，通过执行SQL语句进而执行攻击者所要的操作，其主要原因是程序没有细致地过滤用户输入的数据，致使非法数据侵入系统。 接下来就是如何防范：1.永远不要信任用户的输入。对用户的输入进行校验，可以通过正则表达式，或限制长度；对单引号和双”-“进行转">
+<meta name="twitter:description" content="SQL盲注首先让我们一起来了解一下SQL注入的原理： SQL注入攻击指的是通过构建特殊的输入作为参数传入Web应用程序，而这些输入大都是SQL语法里的一些组合，通过执行SQL语句进而执行攻击者所要的操作，其主要原因是程序没有细致地过滤用户输入的数据，致使非法数据侵入系统。">
 <meta name="twitter:image" content="https://images2015.cnblogs.com/blog/181321/201612/181321-20161216163301558-866388304.gif">
   
     <link rel="alternative" href="/atom.xml" title="Forever8023" type="application/atom+xml">
@@ -65,7 +65,7 @@
     <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
       
       
-      <a class="forkMe" style="position:absolute;z-index:999;top:0;right:0.5em" href="https://github.com/JoeyBling/hexo-theme-yilia-plus"
+      <a class="forkMe" style="position:absolute;z-index:999;top:0;right:0.5em" href="https://github.com/forever8023"
         target="_blank"><img width="149" height="149" src="/img/forkme.png"
           class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
       
@@ -188,6 +188,7 @@
   <div class="article-entry" itemprop="articleBody">
     
     <h1 id="SQL盲注"><a href="#SQL盲注" class="headerlink" title="SQL盲注"></a>SQL盲注</h1><h2 id="首先让我们一起来了解一下SQL注入的原理："><a href="#首先让我们一起来了解一下SQL注入的原理：" class="headerlink" title="首先让我们一起来了解一下SQL注入的原理："></a>首先让我们一起来了解一下SQL注入的原理：</h2><p> SQL注入攻击指的是通过构建特殊的输入作为参数传入Web应用程序，而这些输入大都是SQL语法里的一些组合，通过执行SQL语句进而执行攻击者所要的操作，其主要原因是程序没有细致地过滤用户输入的数据，致使非法数据侵入系统。</p>
+<a id="more"></a>
 <h2 id="接下来就是如何防范："><a href="#接下来就是如何防范：" class="headerlink" title="接下来就是如何防范："></a>接下来就是如何防范：</h2><p>1.永远不要信任用户的输入。对用户的输入进行校验，可以通过正则表达式，或限制长度；对单引号和双”-“进行转换等。<br>2.永远不要使用动态拼装sql，可以使用参数化的sql或者直接使用存储过程进行数据查询存取。<br>3.永远不要使用管理员权限的数据库连接，为每个应用使用单独的权限有限的数据库连接。<br>4.不要把机密信息直接存放，加密或者hash掉密码和敏感的信息。<br>5.应用的异常信息应该给出尽可能少的提示，最好使用自定义的错误信息对原始错误信息进行包装<br>6.sql注入的检测方法一般采取辅助软件或网站平台来检测，软件一般采用sql注入检测工具jsky，网站平台就有亿思网站安全平台检测工具。MDCSOFT SCAN等。采用MDCSOFT-IPS可以有效的防御SQL注入，XSS攻击等。</p>
 <h3 id="SQL盲注的过程"><a href="#SQL盲注的过程" class="headerlink" title="SQL盲注的过程"></a>SQL盲注的过程</h3><p>1、<strong>测试有没有注入漏洞</strong><br>浏览器输入 <code>http://localhost:2003/newsInfo?id=1  and 1=1</code>    页面正常   后台执行的SQL语句为：select <em> from news where id=1 and 1=1<br>输入 <code>http://localhost:2003/newsInfo?id=1  and 1=2</code>  空白页面，数据无法显示(后台执行的SQL语句为：select </em> from news where id=1 and 1=2)，页面有注入漏洞。<br><img src="https://images2015.cnblogs.com/blog/181321/201612/181321-20161216163301558-866388304.gif" alt="在这里插入图片描述"><br>2、<strong>猜解数据库表名</strong><br>既然有漏洞，就准备做点事情咯，主要目的是拿到后台管理员密码，先看看数据库里有哪些表吧<br>  <code>http://localhost:2003/newsInfo?id=1 and (select count(*) from userInfo) &gt;=0</code>   没有数据，继续猜解…… N次，<br>终于 <code>http://localhost:2003/newsInfo?id=1 and (select count(*) from [user]) &gt;=0</code><br> 这里是利用 后面的条件查询数据库表，如果表不存在，后台就报错了，本测试示例后台对异常做了处理，但是数据肯定是出不来的。<br> <img src="https://images2015.cnblogs.com/blog/181321/201612/181321-20161216170931886-1916393652.gif" alt="在这里插入图片描述"><br> 数据显示正常，说明表 <strong>user</strong> 存在，判断 为 用户表<br> 3、<strong>表字段猜解</strong><br><code>http://localhost:2003/newsInfo?id=1 and (select count(pwd) from [user]) &gt;=0</code>  页面数据正常<br>说名表 <strong>user</strong> 存在 <strong>pwd</strong> 字段<br>同理  确认表 <strong>user</strong> 里存在  <strong>name</strong> 字段。<br>4、<strong>查询表里有多少条数据</strong><br><code>http://localhost:2003/newsInfo?id=1 and (select count(*) from [user]) &gt;=5</code> 返回空白页面</p>
 <p><code>http://localhost:2003/newsInfo?id=1 and (select count(*) from [user]) &gt;=2</code> 返回空白页面</p>
@@ -595,7 +596,7 @@
     	<section class="tools-section tools-section-me" q-show="aboutme">
         
           
-  	  		<div class="aboutme-wrap" id="aboutme">主要涉及技术：<br>Java后端开发、聚合支付、<br>公众号开发、开源爱好者、Linux<br><br>联系QQ:2434387555<br><br>很惭愧<br><br>只做了一点微小的工作<br>谢谢大家</div>
+  	  		<div class="aboutme-wrap" id="aboutme">主要涉及技术：<br>Java后端开发、聚合支付、<br>公众号开发、开源爱好者、Linux<br><br>联系QQ:1277732873<br><br>很惭愧<br><br>只做了一点微小的工作<br>谢谢大家</div>
   	  	
     	</section>
     
@@ -682,6 +683,56 @@
   
   <!-- <script async type="text/javascript" size="90" alpha="0.2" zIndex="0" src="/plugins/ribbon.js/ribbon.min.js"></script> -->
   
+  
+    <script type="text/javascript" src="/plugins/live2d-widget.js/L2Dwidget.min.js"></script>
+<script type="text/javascript">
+  /**
+   * 完整配置请参考：https://l2dwidget.js.org/docs/class/src/index.js~L2Dwidget.html#instance-method-init
+   */
+  var pluginModelPath = "assets/", // 模型的文件路径，无需更改
+    pluginRootPath = "/live2d_models/"; // 插件的路径，无需更改
+  //特定的模型json文件名称
+  var modelPathJson = {
+    "epsilon2_1": "Epsilon2.1",
+    "gf": "Gantzert_Felixander",
+    "haru/01": "haru01",
+    "haru/02": "haru02",
+    "nietzsche": "nietzche"
+  }
+
+  
+    var modelName = "hibiki";
+  
+
+  var modelJsonPath = "";
+  if (modelPathJson[modelName]) {
+    modelJsonPath = pluginRootPath + modelName + "/" + pluginModelPath + modelPathJson[modelName] +
+      ".model.json";
+  } else {
+    modelJsonPath = pluginRootPath + modelName + "/" + pluginModelPath + modelName + ".model.json";
+  }
+  L2Dwidget.init({
+    model: {
+      jsonPath: modelJsonPath
+    },
+    display: {
+       position: "right", 
+       width: 145, 
+       height: 315, 
+       hOffset: 50, 
+      
+    },
+    mobile: {
+       show: false, 
+       scale: 0.6 
+    },
+    react: {
+       opacity: 0.8 
+    }
+  })
+
+</script>
+
   
   
 </body>

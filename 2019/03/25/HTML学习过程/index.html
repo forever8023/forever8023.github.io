@@ -19,7 +19,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="c:/Temp/hexo/source/_posts/HTML学习过程-1/图片1.png">
 <meta property="og:image" content="c:/Temp/hexo/source/_posts/HTML学习过程-1/图片2.png">
-<meta property="og:updated_time" content="2019-03-25T12:49:01.433Z">
+<meta property="og:updated_time" content="2019-09-24T11:38:18.239Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTML学习过程">
 <meta name="twitter:description" content="Html学习过程Html是用来做网站的一种语言，网站中显示的文字等便是用html语言编写的代码。1.html基本结构&amp;lt;!DOCTYPE html&amp;gt;                —-声明文档的解析类型，避免浏览器的怪异模式                          —-根标签（）                          —-头标签（开始） 标题">
@@ -64,7 +64,7 @@
     <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
       
       
-      <a class="forkMe" style="position:absolute;z-index:999;top:0;right:0.5em" href="https://github.com/JoeyBling/hexo-theme-yilia-plus"
+      <a class="forkMe" style="position:absolute;z-index:999;top:0;right:0.5em" href="https://github.com/forever8023"
         target="_blank"><img width="149" height="149" src="/img/forkme.png"
           class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
       
@@ -191,6 +191,7 @@
 <p><head>                         —-头标签（开始）</head></p>
 <p><title>标题</title>
   <meta name="generator" content="hexo-theme-yilia-plus">                —-标题标签<br>                        —-头标签（结束）</p>
+<a id="more"></a>
 <p><body>                         —-主体标签（开始）<br>主题内容                        —-浏览器显示的主体内容区域<br></body>                        —-主体标签（结束）<br>                         —-根标签（结束）</p>
 <h3 id="2-标签"><a href="#2-标签" class="headerlink" title="2.标签"></a>2.标签</h3><p>Html通过标签来表现网页的内容<br>标签语法：&lt;标签名&gt;<br><strong>通常成对</strong>出现，第一个是开始标签，第二个是结束标签（结束标签中括号有/）<br>有的标签单独出现（如<br>）换行标签<br><strong>标签是加粗用的；<h>是标题标签；<p>是段落标签；<a>超链接标签；<br><img>插入图片用的；图片可以是本地图片/网络图片<br>本地图片两个路径：1、绝对路径：从盘符算起的路径。<br>                                2、相对路径：从当前路径算起的路径（比如当前的html文件）</a></p>
 <h3 id="3-Html的属性"><a href="#3-Html的属性" class="headerlink" title="3.Html的属性"></a>3.Html的属性</h3><p>它是html标签的一部分，用来完成对受控文字的某些特殊效果或功能<br>属性是写在开始标签中的，属性名称和属性值。<br>href属性是填写网址的；</p>
@@ -599,7 +600,7 @@
     	<section class="tools-section tools-section-me" q-show="aboutme">
         
           
-  	  		<div class="aboutme-wrap" id="aboutme">主要涉及技术：<br>Java后端开发、聚合支付、<br>公众号开发、开源爱好者、Linux<br><br>联系QQ:2434387555<br><br>很惭愧<br><br>只做了一点微小的工作<br>谢谢大家</div>
+  	  		<div class="aboutme-wrap" id="aboutme">主要涉及技术：<br>Java后端开发、聚合支付、<br>公众号开发、开源爱好者、Linux<br><br>联系QQ:1277732873<br><br>很惭愧<br><br>只做了一点微小的工作<br>谢谢大家</div>
   	  	
     	</section>
     
@@ -686,6 +687,56 @@
   
   <!-- <script async type="text/javascript" size="90" alpha="0.2" zIndex="0" src="/plugins/ribbon.js/ribbon.min.js"></script> -->
   
+  
+    <script type="text/javascript" src="/plugins/live2d-widget.js/L2Dwidget.min.js"></script>
+<script type="text/javascript">
+  /**
+   * 完整配置请参考：https://l2dwidget.js.org/docs/class/src/index.js~L2Dwidget.html#instance-method-init
+   */
+  var pluginModelPath = "assets/", // 模型的文件路径，无需更改
+    pluginRootPath = "/live2d_models/"; // 插件的路径，无需更改
+  //特定的模型json文件名称
+  var modelPathJson = {
+    "epsilon2_1": "Epsilon2.1",
+    "gf": "Gantzert_Felixander",
+    "haru/01": "haru01",
+    "haru/02": "haru02",
+    "nietzsche": "nietzche"
+  }
+
+  
+    var modelName = "hibiki";
+  
+
+  var modelJsonPath = "";
+  if (modelPathJson[modelName]) {
+    modelJsonPath = pluginRootPath + modelName + "/" + pluginModelPath + modelPathJson[modelName] +
+      ".model.json";
+  } else {
+    modelJsonPath = pluginRootPath + modelName + "/" + pluginModelPath + modelName + ".model.json";
+  }
+  L2Dwidget.init({
+    model: {
+      jsonPath: modelJsonPath
+    },
+    display: {
+       position: "right", 
+       width: 145, 
+       height: 315, 
+       hOffset: 50, 
+      
+    },
+    mobile: {
+       show: false, 
+       scale: 0.6 
+    },
+    react: {
+       opacity: 0.8 
+    }
+  })
+
+</script>
+
   
   
 </body>

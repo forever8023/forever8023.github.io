@@ -10,17 +10,17 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="前言：之前了解过SQL盲注，现在有时间了就把SQL注入这一块好好了解一番，现在小痴带大家熟悉一下SQL注入的几种类型； SQL注入类型 按照注入点类型分类  （1） 数字型注入点许多网页链接有类似的结构 http://xxx.com/users.php?id=1 基于此种形式的注入，一般被叫做数字型注入点，缘由是其注入点 id 类型为数字，在大多数的网页中，诸如 查看用户个人信息，查看文章等，大都">
+  <meta name="description" content="前言：之前了解过SQL盲注，现在有时间了就把SQL注入这一块好好了解一番，现在小痴带大家熟悉一下SQL注入的几种类型；">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SQL注入类型">
 <meta property="og:url" content="http://yoursite.com/2019/07/19/SQL注入类型 /index.html">
 <meta property="og:site_name" content="Forever8023">
-<meta property="og:description" content="前言：之前了解过SQL盲注，现在有时间了就把SQL注入这一块好好了解一番，现在小痴带大家熟悉一下SQL注入的几种类型； SQL注入类型 按照注入点类型分类  （1） 数字型注入点许多网页链接有类似的结构 http://xxx.com/users.php?id=1 基于此种形式的注入，一般被叫做数字型注入点，缘由是其注入点 id 类型为数字，在大多数的网页中，诸如 查看用户个人信息，查看文章等，大都">
+<meta property="og:description" content="前言：之前了解过SQL盲注，现在有时间了就把SQL注入这一块好好了解一番，现在小痴带大家熟悉一下SQL注入的几种类型；">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-19T08:45:59.290Z">
+<meta property="og:updated_time" content="2019-09-24T11:39:08.122Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SQL注入类型">
-<meta name="twitter:description" content="前言：之前了解过SQL盲注，现在有时间了就把SQL注入这一块好好了解一番，现在小痴带大家熟悉一下SQL注入的几种类型； SQL注入类型 按照注入点类型分类  （1） 数字型注入点许多网页链接有类似的结构 http://xxx.com/users.php?id=1 基于此种形式的注入，一般被叫做数字型注入点，缘由是其注入点 id 类型为数字，在大多数的网页中，诸如 查看用户个人信息，查看文章等，大都">
+<meta name="twitter:description" content="前言：之前了解过SQL盲注，现在有时间了就把SQL注入这一块好好了解一番，现在小痴带大家熟悉一下SQL注入的几种类型；">
   
     <link rel="alternative" href="/atom.xml" title="Forever8023" type="application/atom+xml">
   
@@ -61,7 +61,7 @@
     <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
       
       
-      <a class="forkMe" style="position:absolute;z-index:999;top:0;right:0.5em" href="https://github.com/JoeyBling/hexo-theme-yilia-plus"
+      <a class="forkMe" style="position:absolute;z-index:999;top:0;right:0.5em" href="https://github.com/forever8023"
         target="_blank"><img width="149" height="149" src="/img/forkme.png"
           class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
       
@@ -184,6 +184,7 @@
   <div class="article-entry" itemprop="articleBody">
     
     <h2 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h2><p>之前了解过SQL盲注，现在有时间了就把SQL注入这一块好好了解一番，现在小痴带大家熟悉一下SQL注入的几种类型；</p>
+<a id="more"></a>
 <h1 id="SQL注入类型"><a href="#SQL注入类型" class="headerlink" title="SQL注入类型"></a>SQL注入类型</h1><blockquote>
 <p>按照注入点类型分类</p>
 </blockquote>
@@ -607,7 +608,7 @@
     	<section class="tools-section tools-section-me" q-show="aboutme">
         
           
-  	  		<div class="aboutme-wrap" id="aboutme">主要涉及技术：<br>Java后端开发、聚合支付、<br>公众号开发、开源爱好者、Linux<br><br>联系QQ:2434387555<br><br>很惭愧<br><br>只做了一点微小的工作<br>谢谢大家</div>
+  	  		<div class="aboutme-wrap" id="aboutme">主要涉及技术：<br>Java后端开发、聚合支付、<br>公众号开发、开源爱好者、Linux<br><br>联系QQ:1277732873<br><br>很惭愧<br><br>只做了一点微小的工作<br>谢谢大家</div>
   	  	
     	</section>
     
@@ -694,6 +695,56 @@
   
   <!-- <script async type="text/javascript" size="90" alpha="0.2" zIndex="0" src="/plugins/ribbon.js/ribbon.min.js"></script> -->
   
+  
+    <script type="text/javascript" src="/plugins/live2d-widget.js/L2Dwidget.min.js"></script>
+<script type="text/javascript">
+  /**
+   * 完整配置请参考：https://l2dwidget.js.org/docs/class/src/index.js~L2Dwidget.html#instance-method-init
+   */
+  var pluginModelPath = "assets/", // 模型的文件路径，无需更改
+    pluginRootPath = "/live2d_models/"; // 插件的路径，无需更改
+  //特定的模型json文件名称
+  var modelPathJson = {
+    "epsilon2_1": "Epsilon2.1",
+    "gf": "Gantzert_Felixander",
+    "haru/01": "haru01",
+    "haru/02": "haru02",
+    "nietzsche": "nietzche"
+  }
+
+  
+    var modelName = "hibiki";
+  
+
+  var modelJsonPath = "";
+  if (modelPathJson[modelName]) {
+    modelJsonPath = pluginRootPath + modelName + "/" + pluginModelPath + modelPathJson[modelName] +
+      ".model.json";
+  } else {
+    modelJsonPath = pluginRootPath + modelName + "/" + pluginModelPath + modelName + ".model.json";
+  }
+  L2Dwidget.init({
+    model: {
+      jsonPath: modelJsonPath
+    },
+    display: {
+       position: "right", 
+       width: 145, 
+       height: 315, 
+       hOffset: 50, 
+      
+    },
+    mobile: {
+       show: false, 
+       scale: 0.6 
+    },
+    react: {
+       opacity: 0.8 
+    }
+  })
+
+</script>
+
   
   
 </body>
