@@ -10,20 +10,20 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="盲注是注入的一种，指的是在不知道数据库返回值的情况下对数据中的内容进行猜测，实施SQL注入。盲注一般分为布尔盲注和基于时间的盲注和报错的盲注。本次主要讲解的是基于布尔的盲注。  Length（）函数 返回字符串的长度Substr（）截取字符串Ascii（）返回字符的ascii码sleep(n)：将程序挂起一段时间 n为n秒if(expr1,expr2,expr3):判断语句 如果第一个语句正确就执">
+  <meta name="description" content="盲注是注入的一种，指的是在不知道数据库返回值的情况下对数据中的内容进行猜测，实施SQL注入。盲注一般分为布尔盲注和基于时间的盲注和报错的盲注。本次主要讲解的是基于布尔的盲注。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SQL盲注——布尔型">
 <meta property="og:url" content="http://yoursite.com/2019/07/24/SQL盲注注入——布尔型/index.html">
 <meta property="og:site_name" content="Forever8023">
-<meta property="og:description" content="盲注是注入的一种，指的是在不知道数据库返回值的情况下对数据中的内容进行猜测，实施SQL注入。盲注一般分为布尔盲注和基于时间的盲注和报错的盲注。本次主要讲解的是基于布尔的盲注。  Length（）函数 返回字符串的长度Substr（）截取字符串Ascii（）返回字符的ascii码sleep(n)：将程序挂起一段时间 n为n秒if(expr1,expr2,expr3):判断语句 如果第一个语句正确就执">
+<meta property="og:description" content="盲注是注入的一种，指的是在不知道数据库返回值的情况下对数据中的内容进行猜测，实施SQL注入。盲注一般分为布尔盲注和基于时间的盲注和报错的盲注。本次主要讲解的是基于布尔的盲注。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://img-blog.csdn.net/20180802121602457?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDcwOTQzOQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
 <meta property="og:image" content="https://img-blog.csdn.net/20180802121840799?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDcwOTQzOQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
 <meta property="og:image" content="https://img-blog.csdn.net/20180802130308336?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDcwOTQzOQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
-<meta property="og:updated_time" content="2019-09-24T11:38:47.482Z">
+<meta property="og:updated_time" content="2019-10-10T13:51:24.039Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SQL盲注——布尔型">
-<meta name="twitter:description" content="盲注是注入的一种，指的是在不知道数据库返回值的情况下对数据中的内容进行猜测，实施SQL注入。盲注一般分为布尔盲注和基于时间的盲注和报错的盲注。本次主要讲解的是基于布尔的盲注。  Length（）函数 返回字符串的长度Substr（）截取字符串Ascii（）返回字符的ascii码sleep(n)：将程序挂起一段时间 n为n秒if(expr1,expr2,expr3):判断语句 如果第一个语句正确就执">
+<meta name="twitter:description" content="盲注是注入的一种，指的是在不知道数据库返回值的情况下对数据中的内容进行猜测，实施SQL注入。盲注一般分为布尔盲注和基于时间的盲注和报错的盲注。本次主要讲解的是基于布尔的盲注。">
 <meta name="twitter:image" content="https://img-blog.csdn.net/20180802121602457?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDcwOTQzOQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
   
     <link rel="alternative" href="/atom.xml" title="Forever8023" type="application/atom+xml">
@@ -254,11 +254,11 @@
   <div class="article-entry" itemprop="articleBody">
     
     <p>盲注是注入的一种，指的是在不知道数据库返回值的情况下对数据中的内容进行猜测，实施SQL注入。盲注一般分为布尔盲注和基于时间的盲注和报错的盲注。本次主要讲解的是基于布尔的盲注。</p>
+<a id="more"></a>
 <blockquote>
 <p>Length（）函数 返回字符串的长度<br>Substr（）截取字符串<br>Ascii（）返回字符的ascii码<br>sleep(n)：将程序挂起一段时间 n为n秒<br>if(expr1,expr2,expr3):判断语句 如果第一个语句正确就执行第二个语句如果错误执行第三个语句</p>
 </blockquote>
 <p>以上是一些常用的函数；</p>
-<a id="more"></a>
 <p><strong>布尔型</strong>：页面只返回True和False两种类型页面。利用页面返回不同，逐个猜解数据</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(length(database()))&gt;10</span><br></pre></td></tr></table></figure>
 <p>当前数据库database（）的长度大于10，返回true页面，否则FALSE页面<br><strong>时间型</strong>：通过页面沉睡时间判断<br>通过 sleep（）函数测试，通过if（）和sleep（）联合逐个猜解数据</p>
@@ -441,7 +441,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018-2019 一诺倾城
+    		&copy; 2019 一诺倾城
     	</div>
       	<div class="footer-right">
 			
@@ -766,7 +766,7 @@
   }
 
   
-    var modelName = "hibiki";
+    var modelName = "z16";
   
 
   var modelJsonPath = "";
