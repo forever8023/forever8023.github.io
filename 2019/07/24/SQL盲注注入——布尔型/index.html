@@ -11,6 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="description" content="盲注是注入的一种，指的是在不知道数据库返回值的情况下对数据中的内容进行猜测，实施SQL注入。盲注一般分为布尔盲注和基于时间的盲注和报错的盲注。本次主要讲解的是基于布尔的盲注。">
+<meta name="keywords" content="-SQL注入 -web渗透">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SQL盲注——布尔型">
 <meta property="og:url" content="http://yoursite.com/2019/07/24/SQL盲注注入——布尔型/index.html">
@@ -20,7 +21,7 @@
 <meta property="og:image" content="https://img-blog.csdn.net/20180802121602457?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDcwOTQzOQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
 <meta property="og:image" content="https://img-blog.csdn.net/20180802121840799?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDcwOTQzOQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
 <meta property="og:image" content="https://img-blog.csdn.net/20180802130308336?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDcwOTQzOQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
-<meta property="og:updated_time" content="2019-10-10T13:51:24.039Z">
+<meta property="og:updated_time" content="2019-10-14T12:52:17.743Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SQL盲注——布尔型">
 <meta name="twitter:description" content="盲注是注入的一种，指的是在不知道数据库返回值的情况下对数据中的内容进行猜测，实施SQL注入。盲注一般分为布尔盲注和基于时间的盲注和报错的盲注。本次主要讲解的是基于布尔的盲注。">
@@ -295,7 +296,7 @@
                   
                   
                   <div class="reward-box-item">
-                    <img class="reward-img" src="/img/weixin.png">
+                    <img class="reward-img" src="/img/weixin.jpg">
                     <span class="reward-type">微信</span>
                   </div>
                   
@@ -331,6 +332,17 @@
   <div class="article-info article-info-index">
     
     
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">-SQL注入 -web渗透</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
     
 
     
@@ -558,6 +570,10 @@
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">-SQL注入 -web渗透</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
@@ -608,16 +624,16 @@
         <ul class="search-ul">
           
             <li class="search-li">
-              <a href="https://zhousiwei.gitee.io/ibooks/" target="_blank" class="search-title" title="记录工作和学习过程中的笔记：Java、前端开发、Hexo博客、聚合支付、Linux笔记、ElasticSearch、ELK日志分析">
+              <a href="/" target="_blank" class="search-title" title="记录工作和学习过程中的笔记：Java、前端开发、Hexo博客、聚合支付、Linux笔记、ElasticSearch、ELK日志分析">
                 
-                  <img src="https://zhousiwei.gitee.io/ibooks/favicon.ico">
+                  <i class="icon-link icon"></i>
                 
                 技术笔记
               </a>
             </li>
           
             <li class="search-li">
-              <a href="https://github.com/JoeyBling" target="_blank" class="search-title">
+              <a href="https://github.com/forever8023" target="_blank" class="search-title">
                 
                   <i class="icon-link icon"></i>
                 
